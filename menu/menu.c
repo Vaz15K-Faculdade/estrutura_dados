@@ -179,8 +179,8 @@ void menu_filtro(Disp listaDisp[]) {
 }
 
 void menu_resumo(Disp listaDisp[]) {
-    int count = 0, soma_consumo = 0;
-    float media_consumo;
+    int count = 0;
+    float soma_consumo = 0, media_consumo;
     int numDisp = ler_arquivo(arquivo, listaDisp);
 
     for (int i = 0; i < numDisp; i++)
@@ -192,9 +192,51 @@ void menu_resumo(Disp listaDisp[]) {
     printf("############################################\n");
     printf("Total de dispositivos: %d\n", numDisp);
     printf("Porcentagem Dispositivos ativos: %.2f%\n", ((float)count / numDisp) * 100);
-    printf("Media Consumo de Banda dos Ativos: %.2f MB/s\n", (float)soma_consumo / count);
+    printf("Media Consumo de Banda dos Ativos: %.2f MB/s\n", soma_consumo / (float)count);
     printf("############################################\n");
 
+    return;
+}
+
+void menu_anomalias(Disp listaDisp[]){
+    int numDisp = ler_arquivo(arquivo, listaDisp);
+    int i, j;
+    int ipsDuplicados = 0, dispAcima = 0;
+    float somaConsumo = 0;
+
+    printf("\n===== DETECÇÃO DE ANOMALIAS =====\n");
+    printf("IPs Duplicados Detectados:\n\n");
+
+    // Procurar por IPs duplicados
+    for (i = 0; i < numDisp - 1; i++) {
+        somaConsumo += listaDisp[i].consumoBanda;
+        for (j = i + 1; j < numDisp; j++) {
+            if (strcmp(listaDisp[i].ip, listaDisp[j].ip) == 0) {
+                printf("IP DUPLICADO: %s\n", listaDisp[i].ip);
+                printf("  Dispositivo 1: %s (%s)\n", listaDisp[i].nome, listaDisp[i].tipo);
+                printf("  Dispositivo 2: %s (%s)\n\n", listaDisp[j].nome, listaDisp[j].tipo);
+                ipsDuplicados++;
+            }
+        }
+    }
+
+    if (ipsDuplicados == 0) printf("Nenhum IP duplicado encontrado na rede.\n");
+
+    printf("===================================\n\n");
+    printf("Dispositivos com consumo acima da media:\n");
+
+    for (i = 0; i < numDisp - 1; i++) {
+        if (listaDisp[i].consumoBanda > (somaConsumo / (float)numDisp)){
+            printf("Dispositivo: %s, Consumo %.2f\n acima da media %.2f", listaDisp[i].nome, listaDisp[i].consumoBanda, (somaConsumo / (float)numDisp));
+            dispAcima ++;
+        }
+    }
+
+    if (dispAcima == 0) printf("Nenhum Dispositivo com consumo acima da media\n");
+
+    printf("===================================\n\n");
+
+    sleep(3);
     return;
 }
 
@@ -217,7 +259,7 @@ void menu(Disp listaDisp[]) {
             case 3: menu_busca_ip(listaDisp); break;
             case 4: menu_ordenacao(listaDisp); break;
             case 5: menu_filtro(listaDisp); break;
-            case 6: break;
+            case 6: menu_anomalias(listaDisp); break;
             case 7: menu_resumo(listaDisp); break;
             case 0:
                 printf("Saindo...\n");
