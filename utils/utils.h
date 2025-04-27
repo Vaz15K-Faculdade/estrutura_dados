@@ -7,7 +7,7 @@
 void limpar_buffer();
 void swap(int *a, int *b);
 
-void alocar_memoria(int **array, int tamanho);
-void liberar_memoria(int **array);
+void alocar_inteiro(int **array, int tamanho);
+void alocar_char(char **array, int tamanho);
 
 #endif

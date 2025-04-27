@@ -7,8 +7,8 @@ void merge(int array[], int esquerda, int meio, int direita) {
     int n2 = direita - meio;
     int *L, *R;
 
-    alocar_memoria(&L, n1);
-    alocar_memoria(&R, n2);
+    alocar_inteiro(&L, n1);
+    alocar_inteiro(&R, n2);
 
     for (i = 0; i < n1; i++)
         L[i] = array[esquerda + i];
@@ -42,8 +42,8 @@ void merge(int array[], int esquerda, int meio, int direita) {
         k++;
     }
 
-    liberar_memoria(&L);
-    liberar_memoria(&R);
+    free(L);
+    free(R);
 }
 
 int partition(int array[], int comeco, int fim) {
