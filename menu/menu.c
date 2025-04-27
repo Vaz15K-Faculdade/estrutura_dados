@@ -1,7 +1,9 @@
-#include "menu.h"
+#include<unistd.h>
 
+#include "menu.h"
 #include "utils/utils.h"
 #include "utils/arquivo.h"
+
 
 // Cadastro de dispositivos
 // Listar dispositivos ativos 
@@ -76,19 +78,47 @@ void menu_cad_disp(Disp lista_disp[]) {
     return;
 }
 
-void menu_list_dev() {
+void menu_list_dev(Disp lista_disp[]) {
+    int num_disp = ler_arquivo(arquivo, lista_disp);
+    int dispositivos_ativos = 0;
+
+    printf("\n===== DISPOSITIVOS ATIVOS =====\n");
+    printf("ID | Nome | IP | Tipo | Consumo (MB/s)\n");
+    printf("----------------------------------\n");
+
+    for (int i = 0; i < num_disp; i++) {
+        if (lista_disp[i].status == 1) {
+            printf("%d | %s | %s | %s | %.2f\n", 
+                lista_disp[i].id, 
+                lista_disp[i].nome, 
+                lista_disp[i].ip, 
+                lista_disp[i].tipo, 
+                lista_disp[i].consumoBanda);
+            dispositivos_ativos++;
+        }
+    }
+
+    if (dispositivos_ativos == 0) {
+        printf("Nenhum dispositivo ativo encontrado.\n");
+    }
+
+    printf("\nTotal de dispositivos ativos: %d\n", dispositivos_ativos);
+    printf("===========================\n\n");
+
+    sleep(3);
+
     return;
 }
 
-void menu_busca_ip() {
+void menu_busca_ip(Disp lista_disp[]) {
     return;
 }
 
-void menu_ordenacao() {
+void menu_ordenacao(Disp lista_disp[]) {
     return;
 }
 
-void menu_filtro() {
+void menu_filtro(Disp lista_disp[]) {
     return;
 }
 
@@ -107,10 +137,10 @@ void menu(Disp lista_disp[]) {
 
         switch (opcao) {
             case 1: menu_cad_disp(lista_disp); break;
-            case 2: menu_list_dev(); break;
-            case 3: menu_busca_ip(); break;
-            case 4: menu_ordenacao(); break;
-            case 5: menu_filtro(); break;
+            case 2: menu_list_dev(lista_disp); break;
+            case 3: menu_busca_ip(lista_disp); break;
+            case 4: menu_ordenacao(lista_disp); break;
+            case 5: menu_filtro(lista_disp); break;
             case 6: break;
             case 7: break;
             case 0:
