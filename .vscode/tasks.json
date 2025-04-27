@@ -10,6 +10,7 @@
                 "${workspaceFolder}/menu/*.c",
                 "${workspaceFolder}/ordenacao/*.c",
                 "${workspaceFolder}/utils/*.c",
+                "${workspaceFolder}/busca/*.c",
                 "-I",
                 "${workspaceFolder}",
                 "-o",

@@ -1,10 +1,10 @@
 #include "simples.h"
 
-void bolha(int array[], int tamanho) {
+void bolha(int array[], int tamArray) {
     int i, j;
 
-    for (i = 0; i < tamanho - 1; i++) {
-        for (j = 0; j < tamanho - i - 1; j++) {
+    for (i = 0; i < tamArray - 1; i++) {
+        for (j = 0; j < tamArray - i - 1; j++) {
             if (array[j] > array[j + 1]) {
                 swap(&array[j], &array[j + 1]);
             }
@@ -12,17 +12,35 @@ void bolha(int array[], int tamanho) {
     }
 }
 
-void selecao(int array[], int tamanho) {
-    int i, j, min_idx;
+void bolha_disp(Disp array[], int tamArray) {
+    int i, j;
+    int trocas;
 
-    for (i = 0; i < tamanho - 1; i++) {
-        min_idx = i;
-        for (j = i + 1; j < tamanho; j++) {
-            if (array[j] < array[min_idx]) {
-                min_idx = j;
+    for (i = 0; i < tamArray - 1; i++) {
+        trocas = 0;
+
+        for (j = 0; j < tamArray - i - 1; j++) {
+            if (strcmp(array[j].ip, array[j + 1].ip) > 0) {
+                swap_disp(&array[j], &array[j + 1]);
+                trocas = 1;
             }
         }
-        swap(&array[min_idx], &array[i]);
+
+        if (trocas == 0) break;
+    }
+}
+
+void selecao(int array[], int tamanho) {
+    int i, j, minIdx;
+
+    for (i = 0; i < tamanho - 1; i++) {
+        minIdx = i;
+        for (j = i + 1; j < tamanho; j++) {
+            if (array[j] < array[minIdx]) {
+                minIdx = j;
+            }
+        }
+        swap(&array[minIdx], &array[i]);
     }
 }
 

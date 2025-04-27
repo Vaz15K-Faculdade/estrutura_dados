@@ -13,12 +13,12 @@
 // Detecção de anomalias
 // Resumo - Numero de disp - Consumo medio - percentagem disp ativos
 
-void menu_cad_disp(Disp lista_disp[]) {
+void menu_cad_disp(Disp listaDisp[]) {
     char nome[TAMANHO_BUFFER], ip[16], tipo[TAMANHO_BUFFER];
     float consumoBanda;
     int status, ver = 0;
 
-    int num_disp = ler_arquivo(arquivo, lista_disp);
+    int numDisp = ler_arquivo(arquivo, listaDisp);
 
     printf("Informe o nome:\n");
     scanf("%s", nome);
@@ -60,49 +60,49 @@ void menu_cad_disp(Disp lista_disp[]) {
     scanf("%d", &status);
 
     // Adicionando um novo dispositivo ao final do array
-    int novo_id = (num_disp > 0) ? lista_disp[num_disp-1].id + 1 : 1;
+    int novoId = (numDisp > 0) ? listaDisp[numDisp-1].id + 1 : 1;
 
-    lista_disp[num_disp].nome = (char*)malloc((strlen(nome) + 1) * sizeof(char));
-    lista_disp[num_disp].tipo = (char*)malloc((strlen(tipo) + 1) * sizeof(char));
+    listaDisp[numDisp].nome = (char*)malloc((strlen(nome) + 1) * sizeof(char));
+    listaDisp[numDisp].tipo = (char*)malloc((strlen(tipo) + 1) * sizeof(char));
 
-    lista_disp[num_disp].id = novo_id;
-    strcpy(lista_disp[num_disp].nome, nome);
-    strcpy(lista_disp[num_disp].ip, ip);
-    strcpy(lista_disp[num_disp].tipo, tipo);
-    lista_disp[num_disp].consumoBanda = consumoBanda;
-    lista_disp[num_disp].status = status;
+    listaDisp[numDisp].id = novoId;
+    strcpy(listaDisp[numDisp].nome, nome);
+    strcpy(listaDisp[numDisp].ip, ip);
+    strcpy(listaDisp[numDisp].tipo, tipo);
+    listaDisp[numDisp].consumoBanda = consumoBanda;
+    listaDisp[numDisp].status = status;
 
-    num_disp++;
-    salvar_arquivo(arquivo, lista_disp, num_disp);
+    numDisp++;
+    salvar_arquivo(arquivo, listaDisp, numDisp);
 
     return;
 }
 
-void menu_list_dev(Disp lista_disp[]) {
-    int num_disp = ler_arquivo(arquivo, lista_disp);
-    int dispositivos_ativos = 0;
+void menu_list_dev(Disp listaDisp[]) {
+    int numDisp = ler_arquivo(arquivo, listaDisp);
+    int dispositivosAtivos = 0;
 
     printf("\n===== DISPOSITIVOS ATIVOS =====\n");
     printf("ID | Nome | IP | Tipo | Consumo (MB/s)\n");
     printf("----------------------------------\n");
 
-    for (int i = 0; i < num_disp; i++) {
-        if (lista_disp[i].status == 1) {
+    for (int i = 0; i < numDisp; i++) {
+        if (listaDisp[i].status == 1) {
             printf("%d | %s | %s | %s | %.2f\n", 
-                lista_disp[i].id, 
-                lista_disp[i].nome, 
-                lista_disp[i].ip, 
-                lista_disp[i].tipo, 
-                lista_disp[i].consumoBanda);
-            dispositivos_ativos++;
+                listaDisp[i].id, 
+                listaDisp[i].nome, 
+                listaDisp[i].ip, 
+                listaDisp[i].tipo, 
+                listaDisp[i].consumoBanda);
+            dispositivosAtivos++;
         }
     }
 
-    if (dispositivos_ativos == 0) {
+    if (dispositivosAtivos == 0) {
         printf("Nenhum dispositivo ativo encontrado.\n");
     }
 
-    printf("\nTotal de dispositivos ativos: %d\n", dispositivos_ativos);
+    printf("\nTotal de dispositivos ativos: %d\n", dispositivosAtivos);
     printf("===========================\n\n");
 
     sleep(3);
@@ -110,19 +110,49 @@ void menu_list_dev(Disp lista_disp[]) {
     return;
 }
 
-void menu_busca_ip(Disp lista_disp[]) {
+void menu_busca_ip(Disp listaDisp[]) {
+    int opcao;
+    char ip[16];
+
+    printf("Informe como deseja buscar:\n");
+    printf("1 - Busca Sequencial | 2 - Busca Binaria\n");
+    scanf("%d", &opcao);
+    limpar_buffer();
+
+    printf("Informe o IP que dejesa buscar: ");
+    scanf("%s", ip);
+    limpar_buffer();
+
+    (opcao == 1) ? busca_sequencial_ip(listaDisp, ler_arquivo(arquivo, listaDisp), ip) : busca_binaria_ip(listaDisp, ler_arquivo(arquivo, listaDisp), ip);
+
     return;
 }
 
-void menu_ordenacao(Disp lista_disp[]) {
+void menu_ordenacao(Disp listaDisp[]) {
+    int opcao;
+    int numDisp = ler_arquivo(arquivo, listaDisp);
+
+    printf("Informe como deseja ordernar:\n");
+    printf("1 - Endereco de IP | 2 - Consumo de banda\n");
+    printf("3 - Tipo de dispositivo\n");
+    scanf("%d", &opcao);
+    limpar_buffer();
+
+    if (opcao == 1)
+        bolha_disp(listaDisp, numDisp);
+    else if (opcao == 2)
+        merge_sort_consumo_banda(listaDisp, 0, numDisp - 1);
+    else
+        quick_sort_tipo(listaDisp, 0, numDisp - 1);
+
     return;
 }
 
-void menu_filtro(Disp lista_disp[]) {
+void menu_filtro(Disp listaDisp[]) {
     return;
 }
 
-void menu(Disp lista_disp[]) {
+void menu(Disp listaDisp[]) {
     int opcao = 0;
     
     do {
@@ -136,11 +166,11 @@ void menu(Disp lista_disp[]) {
         limpar_buffer();
 
         switch (opcao) {
-            case 1: menu_cad_disp(lista_disp); break;
-            case 2: menu_list_dev(lista_disp); break;
-            case 3: menu_busca_ip(lista_disp); break;
-            case 4: menu_ordenacao(lista_disp); break;
-            case 5: menu_filtro(lista_disp); break;
+            case 1: menu_cad_disp(listaDisp); break;
+            case 2: menu_list_dev(listaDisp); break;
+            case 3: menu_busca_ip(listaDisp); break;
+            case 4: menu_ordenacao(listaDisp); break;
+            case 5: menu_filtro(listaDisp); break;
             case 6: break;
             case 7: break;
             case 0:

@@ -19,8 +19,8 @@ static void alocar_strings_dispositivo(Disp *dispositivo, const char *nome, cons
     strcpy(dispositivo->tipo, tipo);
 }
 
-int ler_arquivo(const char *nome_arquivo, Disp dispositivos[]) {
-    FILE *arquivo = fopen(nome_arquivo, "r");
+int ler_arquivo(const char *nomeArquivo, Disp dispositivos[]) {
+    FILE *arquivo = fopen(nomeArquivo, "r");
     if (arquivo == NULL) {
         printf("Arquivo nao encontrado, Criando...");
         return 0;
@@ -35,20 +35,20 @@ int ler_arquivo(const char *nome_arquivo, Disp dispositivos[]) {
     // }
 
     while (fgets(buffer, TAMANHO_BUFFER, arquivo) && count < MAX_DISPOSITIVOS) {
-        char temp_nome[TAMANHO_BUFFER], temp_tipo[TAMANHO_BUFFER], temp_status[10];
+        char tempNome[TAMANHO_BUFFER], tempTipo[TAMANHO_BUFFER], tempStatus[10];
 
         if (sscanf(buffer, "%d;%[^;];%[^;];%[^;];%f;%d",
             &dispositivos[count].id,
-            temp_nome,
+            tempNome,
             &dispositivos[count].ip,
-            temp_tipo,
+            tempTipo,
             &dispositivos[count].consumoBanda,
             &dispositivos[count].status) != 6)
         {
             continue;
         }
 
-        alocar_strings_dispositivo(&dispositivos[count], temp_nome, temp_tipo);
+        alocar_strings_dispositivo(&dispositivos[count], tempNome, tempTipo);
 
         count ++;
     }
@@ -57,8 +57,8 @@ int ler_arquivo(const char *nome_arquivo, Disp dispositivos[]) {
     return count;
 }
 
-void salvar_arquivo(const char *nome_arquivo, Disp dispositivos[], int num_dispositivos){
-    FILE *arquivo = fopen(nome_arquivo, "w");
+void salvar_arquivo(const char *nomeArquivo, Disp dispositivos[], int numDispositivos){
+    FILE *arquivo = fopen(nomeArquivo, "w");
     if (arquivo == NULL) {
         printf("Erro ao abrir arquivo...");
         return;
@@ -66,7 +66,7 @@ void salvar_arquivo(const char *nome_arquivo, Disp dispositivos[], int num_dispo
 
     // fprintf(arquivo, "id;nome;ip;tipo;consumoBanda;status\n");
 
-    for (int i = 0; i < num_dispositivos; i++) {
+    for (int i = 0; i < numDispositivos; i++) {
         fprintf(arquivo, "%d;%s;%s;%s;%.2f;%d\n",
                 dispositivos[i].id,
                 dispositivos[i].nome,

@@ -6,7 +6,7 @@
 
 #include "utils/utils.h"
 
-void quick_sort(int array[], int comeco, int fim);
-void merge_sort(int array[], int esquerda, int direita);
+void merge_sort_consumo_banda(Disp array[], int esquerda, int direita);
+void quick_sort_tipo(Disp array[], int comeco, int fim);
 
 #endif /* AVANCADO_H */
