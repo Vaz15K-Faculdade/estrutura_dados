@@ -6,6 +6,7 @@
 #include "busca/busca.h"
 #include "ordenacao/avancado.h"
 #include "ordenacao/simples.h"
+#include "busca/filtro.h"
 
 extern const char *arquivo;
 void menu(Disp listaDisp[]);

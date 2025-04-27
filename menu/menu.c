@@ -16,7 +16,7 @@
 void menu_cad_disp(Disp listaDisp[]) {
     char nome[TAMANHO_BUFFER], ip[16], tipo[TAMANHO_BUFFER];
     float consumoBanda;
-    int status, ver = 0;
+    int status;
 
     int numDisp = ler_arquivo(arquivo, listaDisp);
 
@@ -28,8 +28,8 @@ void menu_cad_disp(Disp listaDisp[]) {
     scanf("%s", ip);
     limpar_buffer();
 
+    int opcao;
     do{
-        int opcao;
         printf("Informe o tipo\n");
         printf("1 - Computador | 2 - Notebook\n");
         printf("3 - Roteador   | 4 - Switch\n");
@@ -38,18 +38,18 @@ void menu_cad_disp(Disp listaDisp[]) {
         scanf("%d", &opcao);
 
         switch (opcao) {
-        case 1: strcpy(tipo, "Computador"); ver = 1; break;
-        case 2: strcpy(tipo, "Notebook"); ver = 1; break;
-        case 3: strcpy(tipo, "Roteador"); ver = 1; break;
-        case 4: strcpy(tipo, "Switch"); ver = 1; break;
-        case 5: strcpy(tipo, "Impressora"); ver = 1; break;
-        case 6: strcpy(tipo, "Smart TV"); ver = 1; break;
-        case 7: strcpy(tipo, "Celular"); ver = 1; break;
-        case 8: strcpy(tipo, "Tablet"); ver = 1; break;
+        case 1: strcpy(tipo, "Computador"); break;
+        case 2: strcpy(tipo, "Notebook"); break;
+        case 3: strcpy(tipo, "Roteador"); break;
+        case 4: strcpy(tipo, "Switch"); break;
+        case 5: strcpy(tipo, "Impressora"); break;
+        case 6: strcpy(tipo, "Smart TV"); break;
+        case 7: strcpy(tipo, "Celular"); break;
+        case 8: strcpy(tipo, "Tablet"); break;
         default:
             printf("Opção Invalida\n");
         }
-    } while (ver != 1);
+    } while (opcao < 1 || opcao > 8);
 
     printf("Informe o Consumo de Banda (MB/s):\n");
     scanf("%f", &consumoBanda);
@@ -149,6 +149,32 @@ void menu_ordenacao(Disp listaDisp[]) {
 }
 
 void menu_filtro(Disp listaDisp[]) {
+    int opcao;
+    int numDisp = ler_arquivo(arquivo, listaDisp);
+
+    do{
+        printf("Informe como deseja filtrar\n");
+        printf("1 - Computador | 2 - Notebook\n");
+        printf("3 - Roteador   | 4 - Switch\n");
+        printf("5 - Impressora | 6 - Smart TV\n");
+        printf("7 - Telefone   | 8 - Tablet\n");
+        scanf("%d", &opcao);
+        limpar_buffer();
+
+        switch (opcao) {
+        case 1: filtrar_disp(listaDisp, numDisp, "Computador"); break;
+        case 2: filtrar_disp(listaDisp, numDisp, "Notebook"); break;
+        case 3: filtrar_disp(listaDisp, numDisp, "Roteador"); break;
+        case 4: filtrar_disp(listaDisp, numDisp, "Switch"); break;
+        case 5: filtrar_disp(listaDisp, numDisp, "Impressora"); break;
+        case 6: filtrar_disp(listaDisp, numDisp, "SmartTV"); break;
+        case 7: filtrar_disp(listaDisp, numDisp, "Telefone"); break;
+        case 8: filtrar_disp(listaDisp, numDisp, "Tablet"); break;
+        default:
+            printf("Opção Invalida\n");
+        }
+    } while (opcao < 1 || opcao > 8);
+
     return;
 }
 
