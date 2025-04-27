@@ -1,104 +1,73 @@
 #include "menu.h"
-#include "../ordenacao/simple_alg.h"
-#include "../ordenacao/advanced_alg.h"
-#include "../utils/utils.h"
+
+#include "utils/utils.h"
+
+// Cadastro de dispositivos
+// Listar dispositivos ativos 
+// Buscar endereço ip
+// Ordenação ip (alpha) - consumo (ordem decre) - tipo (alpha ou cat)
+// Filtrar por tipo de dispositivo
+// Detecção de anomalias
+// Resumo - Numero de disp - Consumo medio - percentagem disp ativos
+
+void menu_cad_disp() {
+    return;
+}
+
+void menu_list_dev() {
+    return;
+}
+
+void menu_busca_ip() {
+    return;
+}
+
+void menu_ordenacao() {
+    return;
+}
+
+void menu_filtro() {
+    return;
+}
 
 void menu() {
-    int *d;
-    int opc, tamanho, modo_entrada, valor_max;
+    int opcao = 0;
     
-    printf("Informe o tamanho do vetor: ");
-    scanf("%d", &tamanho);
-    
-    alocar(&d, tamanho);
-    
-    printf("Escolha o modo de entrada:\n");
-    printf("1 - Informar valores manualmente\n");
-    printf("2 - Gerar valores aleatórios\n");
-    scanf("%d", &modo_entrada);
-    
-    switch(modo_entrada) {
-        case 1:
-            informar(d, tamanho);
-            break;
-        case 2:
-            printf("Informe o valor máximo a ser gerado: ");
-            scanf("%d", &valor_max);
-            gerar_aleatorio(d, tamanho, valor_max);
-            break;
-        default:
-            printf("Opção inválida! Usando entrada manual.\n");
-            informar(d, tamanho);
-    }
+    do {
+        printf("Menu:\n");
+        printf("1. Cadastro de dispositivos        | 2. Listar dispositivos ativos\n");
+        printf("3. Buscar endereço IP              | 4. Ordenação\n");
+        printf("5. Filtrar por tipo de dispositivo | 6. Detecção de anomalias\n");
+        printf("7. Resumo                          | 0. Sair\n");
+        scanf("%d", &opcao);
 
-    printf("\nInforme o metodo de ordenacao:\n");
-    printf("1 - Bolha\n");
-    printf("2 - Seleção\n");
-    printf("3 - Inserção\n");
-    printf("4 - QuickSort\n");
-    printf("5 - MergeSort\n");
-    printf("0 - Sair\n");
-    
-    scanf("%i", &opc);
-    
-    switch (opc) {
-        case 1:
-            printf("Desordenado: ");
-            mostrar_vetor(d, tamanho);
-            
-            bolha(d, tamanho);
-            
-            printf("Ordenado: ");
-            mostrar_vetor(d, tamanho);
-            break;
-            
-        case 2:
-            printf("Desordenado: ");
-            mostrar_vetor(d, tamanho);
-            
-            selecao(d, tamanho);
-            
-            printf("Ordenado: ");
-            mostrar_vetor(d, tamanho);
-            break;
-            
-        case 3:
-            printf("Desordenado: ");
-            mostrar_vetor(d, tamanho);
-            
-            insercao(d, tamanho);
-            
-            printf("Ordenado: ");
-            mostrar_vetor(d, tamanho);
-            break;
-        
-        case 4:
-            printf("Desordenado: ");
-            mostrar_vetor(d, tamanho);
-            
-            quickSort(d, 0, tamanho-1);
-            
-            printf("Ordenado: ");
-            mostrar_vetor(d, tamanho);
-            break;
-            
-        case 5:
-            printf("Desordenado: ");
-            mostrar_vetor(d, tamanho);
-            
-            mergeSort(d, 0, tamanho-1);
-            
-            printf("Ordenado: ");
-            mostrar_vetor(d, tamanho);
-            break;
-            
-        case 0:
-            printf("Saindo...\n");
-            break;
-            
-        default:
-            printf("Opção inválida!\n");
-    }
+        limpar_buffer();
 
-    free(d);
+        switch (opcao) {
+            case 1:
+                menu_cad_disp();
+                break;
+            case 2:
+                menu_list_dev();
+                break;
+            case 3:
+                menu_busca_ip();
+                break;
+            case 4:
+                menu_ordenacao();
+                break;
+            case 5:
+                menu_filtro();
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 0:
+                printf("Saindo...\n");
+                break;
+            default:
+                printf("Opção inválida! Tente novamente.\n");
+        }
+    } while (opcao != 0);
 }

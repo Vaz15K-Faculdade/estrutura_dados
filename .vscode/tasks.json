@@ -1,31 +1,26 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild",
-            "label": "C/C++: gcc arquivo de build ativo",
+            "label": "Build Project (GCC)",
+            "type": "shell",
             "command": "/usr/bin/gcc",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
                 "${workspaceFolder}/main.c",
                 "${workspaceFolder}/menu/*.c",
                 "${workspaceFolder}/ordenacao/*.c",
                 "${workspaceFolder}/utils/*.c",
+                "-I",
+                "${workspaceFolder}",
                 "-o",
-                "${workspaceFolder}/main"
+                "${workspaceFolder}/programa",
+                "-g"
             ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
+            "group": "build",
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "detail": "Tarefa gerada pelo Depurador."
+            "detail": "Compila o projeto estrutura_dados."
         }
-    ],
-    "version": "2.0.0"
+    ]
 }
