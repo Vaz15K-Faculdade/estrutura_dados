@@ -178,6 +178,26 @@ void menu_filtro(Disp listaDisp[]) {
     return;
 }
 
+void menu_resumo(Disp listaDisp[]) {
+    int count = 0, soma_consumo = 0;
+    float media_consumo;
+    int numDisp = ler_arquivo(arquivo, listaDisp);
+
+    for (int i = 0; i < numDisp; i++)
+        if (listaDisp[i].status == 1) {
+            count++;
+            soma_consumo += listaDisp[i].consumoBanda;
+        }
+
+    printf("############################################\n");
+    printf("Total de dispositivos: %d\n", numDisp);
+    printf("Porcentagem Dispositivos ativos: %.2f%\n", ((float)count / numDisp) * 100);
+    printf("Media Consumo de Banda dos Ativos: %.2f MB/s\n", (float)soma_consumo / count);
+    printf("############################################\n");
+
+    return;
+}
+
 void menu(Disp listaDisp[]) {
     int opcao = 0;
     
@@ -198,7 +218,7 @@ void menu(Disp listaDisp[]) {
             case 4: menu_ordenacao(listaDisp); break;
             case 5: menu_filtro(listaDisp); break;
             case 6: break;
-            case 7: break;
+            case 7: menu_resumo(listaDisp); break;
             case 0:
                 printf("Saindo...\n");
                 break;
