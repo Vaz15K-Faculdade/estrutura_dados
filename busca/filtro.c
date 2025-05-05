@@ -1,4 +1,6 @@
 #include "filtro.h"
+#include <stdio.h>
+#include <string.h>
 
 /*
 Keven Eduardo Vaz Bilibio

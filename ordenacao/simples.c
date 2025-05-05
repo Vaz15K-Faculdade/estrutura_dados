@@ -1,4 +1,6 @@
 #include "simples.h"
+#include "utils/utils.h"
+#include <stdio.h>
 
 /*
 Keven Eduardo Vaz Bilibio

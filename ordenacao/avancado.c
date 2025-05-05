@@ -1,3 +1,8 @@
+#include "avancado.h"
+#include "utils/utils.h"
+#include <stdlib.h>
+#include <string.h>
+
 /*
 Keven Eduardo Vaz Bilibio 
 05/05/2025
@@ -6,8 +11,6 @@ Arquivo avancado.c
 Possui o codigo principal do arquivo de ordenacao,
     com os algoritimos de ordenacao avançados/sofisticados
 */
-
-#include "avancado.h"
 
 // Quick Sort
 int partition(Disp array[], int comeco, int fim) {

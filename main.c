@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "menu/menu.h"
 
 /*
 Keven Eduardo Vaz Bilibio
@@ -8,9 +9,6 @@ Arquivo main.c
 Possui o codigo principal do programa,
     com a função main
 */
-
-#include "menu/menu.h"
-#include "utils/arquivo.h"
 
 const char *arquivo = "dispositivos.csv";
 

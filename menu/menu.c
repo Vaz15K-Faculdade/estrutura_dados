@@ -1,6 +1,4 @@
 #include "menu.h"
-#include "utils/utils.h"
-#include "utils/arquivo.h"
 #include <unistd.h>
 
 /*
@@ -10,14 +8,6 @@ Trabalho de Estruturas de Dados
 Arquivo menu.c
 Possui o codigo do menu principal do programa
 */
-
-// Cadastro de dispositivos
-// Listar dispositivos ativos 
-// Buscar endereço ip
-// Ordenação ip (alpha) - consumo (ordem decre) - tipo (alpha ou cat)
-// Filtrar por tipo de dispositivo
-// Detecção de anomalias
-// Resumo - Numero de disp - Consumo medio - percentagem disp ativos
 
 void menu_cad_disp(Disp listaDisp[], int *numDisp) {
     char nome[TAMANHO_BUFFER], ip[16], tipo[TAMANHO_BUFFER];

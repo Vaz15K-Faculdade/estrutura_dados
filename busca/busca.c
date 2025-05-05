@@ -1,4 +1,5 @@
 #include "busca.h"
+#include "ordenacao/simples.h"
 
 /*
 Keven Eduardo Vaz Bilibio 

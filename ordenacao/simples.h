@@ -10,9 +10,6 @@ Possui as inpotações do arquivo simples.c
     referente as funções de ordenação simples
 */
 
-#include <stdio.h>
-
-#include "utils/utils.h"
 #include "utils/arquivo.h"
 
 void bolha(int array[], int tamArray);

@@ -6,16 +6,15 @@ Keven Eduardo Vaz Bilibio
 05/05/2025
 Trabalho de Estruturas de Dados
 Arquivo menu.h
-Possui as inpotações do menu principal do programa,
+Possui as importações do menu principal do programa,
     referente ao menu.c
 */
 
 #include <stdio.h>
 #include "utils/arquivo.h"
 #include "busca/busca.h"
-#include "ordenacao/avancado.h"
-#include "ordenacao/simples.h"
 #include "busca/filtro.h"
+#include "ordenacao/avancado.h"
 
 extern const char *arquivo;
 
