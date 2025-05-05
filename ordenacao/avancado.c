@@ -33,6 +33,39 @@ void quick_sort_tipo(Disp array[], int comeco, int fim) {
     }
 }
 
+// Quick Sort com tipo prioritário
+int partition_prioritario(Disp array[], int comeco, int fim, char *tipo_prioritario) {
+    char *pivot = array[fim].tipo;
+    int i = comeco - 1;
+
+    for (int j = comeco; j < fim; j++) {
+        // Prioriza o tipo escolhido, depois ordena alfabeticamente
+        if (strcmp(array[j].tipo, tipo_prioritario) == 0 && strcmp(array[fim].tipo, tipo_prioritario) != 0) {
+            // Se elemento atual é do tipo prioritário e o pivot não, o elemento atual vem primeiro
+            i++;
+            swap_disp(&array[i], &array[j]);
+        } else if (strcmp(array[j].tipo, tipo_prioritario) != 0 && strcmp(array[fim].tipo, tipo_prioritario) == 0) {
+            // Se pivot é do tipo prioritário e o elemento atual não, não troca
+            continue;
+        } else if (strcmp(array[j].tipo, pivot) < 0) {
+            // Se ambos são do mesmo tipo (prioritário ou não), ordena alfabeticamente
+            i++;
+            swap_disp(&array[i], &array[j]);
+        }
+    }
+    swap_disp(&array[i + 1], &array[fim]);
+    return i + 1;
+}
+
+void quick_sort_tipo_prioritario(Disp array[], int comeco, int fim, char *tipo_prioritario) {
+    if (comeco < fim) {
+        int p = partition_prioritario(array, comeco, fim, tipo_prioritario);
+
+        quick_sort_tipo_prioritario(array, comeco, p - 1, tipo_prioritario);
+        quick_sort_tipo_prioritario(array, p + 1, fim, tipo_prioritario);
+    }
+}
+
 // Merge Sort Para Consumo de Banda
 // Divide o array em duas metades, ordena cada metade
 // Depois mescla as duas metades ordenadas

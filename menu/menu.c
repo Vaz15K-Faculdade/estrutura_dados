@@ -136,7 +136,7 @@ void menu_ordenacao(Disp listaDisp[], int numDisp) {
 
     printf("Informe como deseja ordernar:\n");
     printf("1 - Endereco de IP | 2 - Consumo de banda\n");
-    printf("3 - Tipo de dispositivo\n");
+    printf("3 - Tipo de dispositivo | 4 - Categoria prioritaria\n");
     scanf("%d", &opcao);
     limpar_buffer();
 
@@ -144,8 +144,41 @@ void menu_ordenacao(Disp listaDisp[], int numDisp) {
         bolha_disp(listaDisp, numDisp);
     else if (opcao == 2)
         merge_sort_consumo_banda(listaDisp, 0, numDisp - 1);
-    else
+    else if (opcao == 3)
         quick_sort_tipo(listaDisp, 0, numDisp - 1);
+    else if (opcao == 4) {
+        char tipo_prioritario[TAMANHO_BUFFER];
+        int opcao_tipo;
+        
+        do {
+            printf("Escolha o tipo prioritario:\n");
+            printf("1 - Computador | 2 - Notebook\n");
+            printf("3 - Roteador   | 4 - Switch\n");
+            printf("5 - Impressora | 6 - Smart TV\n");
+            printf("7 - Celular    | 8 - Tablet\n");
+            scanf("%d", &opcao_tipo);
+            limpar_buffer();
+            
+            switch (opcao_tipo) {
+                case 1: strcpy(tipo_prioritario, "Computador"); break;
+                case 2: strcpy(tipo_prioritario, "Notebook"); break;
+                case 3: strcpy(tipo_prioritario, "Roteador"); break;
+                case 4: strcpy(tipo_prioritario, "Switch"); break;
+                case 5: strcpy(tipo_prioritario, "Impressora"); break;
+                case 6: strcpy(tipo_prioritario, "Smart TV"); break;
+                case 7: strcpy(tipo_prioritario, "Celular"); break;
+                case 8: strcpy(tipo_prioritario, "Tablet"); break;
+                default:
+                    printf("Opção Inválida\n");
+            }
+        } while (opcao_tipo < 1 || opcao_tipo > 8);
+        
+        quick_sort_tipo_prioritario(listaDisp, 0, numDisp - 1, tipo_prioritario);
+        printf("Dispositivos ordenados com prioridade para: %s\n", tipo_prioritario);
+    }
+    else {
+        printf("Opção inválida!\n");
+    }
 
     return;
 }

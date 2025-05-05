@@ -17,5 +17,6 @@ Possui as inpotações do arquivo avancado.c
 
 void merge_sort_consumo_banda(Disp array[], int esquerda, int direita);
 void quick_sort_tipo(Disp array[], int comeco, int fim);
+void quick_sort_tipo_prioritario(Disp array[], int comeco, int fim, char *tipo_prioritario);
 
 #endif /* AVANCADO_H */

@@ -18,7 +18,4 @@ Possui as inpotações do arquivo simples.c
 void bolha(int array[], int tamArray);
 void bolha_disp(Disp array[], int tamArray);
 
-void selecao(int array[], int tamanho);
-void insercao(int array[], int tamanho);
-
 #endif /* SIMPLES_H */

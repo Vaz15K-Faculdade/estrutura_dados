@@ -38,32 +38,3 @@ void bolha_disp(Disp array[], int tamArray) {
         if (trocas == 0) break;
     }
 }
-
-void selecao(int array[], int tamanho) {
-    int i, j, minIdx;
-
-    for (i = 0; i < tamanho - 1; i++) {
-        minIdx = i;
-        for (j = i + 1; j < tamanho; j++) {
-            if (array[j] < array[minIdx]) {
-                minIdx = j;
-            }
-        }
-        swap(&array[minIdx], &array[i]);
-    }
-}
-
-void insercao(int array[], int tamanho) {
-    int i, j, chave;
-
-    for (i = 1; i < tamanho; i++) {
-        chave = array[i];
-        j = i - 1;
-
-        while (j >= 0 && array[j] > chave) {
-            array[j + 1] = array[j];
-            j--;
-        }
-        array[j + 1] = chave;
-    }
-}
