@@ -1,5 +1,14 @@
 #include "arquivo.h"
 
+/*
+Keven Eduardo Vaz Bilibio
+05/05/2025
+Trabalho de Estruturas de Dados
+Arquivo arquivo.c
+Possui o codigo principal do arquivo de leitura e escrita,
+    com as funções de leitura e escrita de arquivos
+*/
+
 static void alocar_strings_dispositivo(Disp *dispositivo, const char *nome, const char *tipo) {
     dispositivo->nome = (char *)malloc(strlen(nome) + 1);
 

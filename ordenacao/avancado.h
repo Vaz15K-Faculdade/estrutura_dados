@@ -1,6 +1,15 @@
 #ifndef AVANCADO_H
 #define AVANCADO_H
 
+/*
+Keven Eduardo Vaz Bilibio
+05/05/2025
+Trabalho de Estruturas de Dados
+Arquivo avancado.h
+Possui as inpotações do arquivo avancado.c
+    referente as funções de ordenação avançadas/sofisticadas
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 

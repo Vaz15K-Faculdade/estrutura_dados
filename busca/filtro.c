@@ -1,5 +1,15 @@
 #include "filtro.h"
 
+/*
+Keven Eduardo Vaz Bilibio
+05/05/2025
+Trabalho de Estruturas de Dados
+Arquivo filtro.c
+Possui o codigo principal do arquivo de filtro,
+    com os algoritimos de filtro,
+    referente as funções de filtro de dispositivos
+*/
+
 void filtrar_disp(Disp array[], int tamArray, char *dispositivo) {
     printf("ID | Nome | IP | Tipo | Consumo | Status\n");
     printf("----------------------------------\n");

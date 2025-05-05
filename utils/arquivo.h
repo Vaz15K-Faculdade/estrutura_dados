@@ -1,6 +1,15 @@
 #ifndef ARQUIVO_H
 #define ARQUIVO_H
 
+/*
+Keven Eduardo Vaz Bilibio
+05/05/2025
+Trabalho de Estruturas de Dados
+Arquivo arquivo.h
+Possui as inpotações do arquivo arquivo.c
+    referente as funções de leitura e escrita de arquivos
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

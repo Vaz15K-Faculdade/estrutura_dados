@@ -1,6 +1,15 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+/*
+Keven Eduardo Vaz Bilibio
+05/05/2025
+Trabalho de Estruturas de Dados
+Arquivo utils.h
+Possui as inpotações do arquivo utils.c
+    referente as funções de utilidades
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "arquivo.h"

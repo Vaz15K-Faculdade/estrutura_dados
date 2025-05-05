@@ -1,5 +1,15 @@
 #include "busca.h"
 
+/*
+Keven Eduardo Vaz Bilibio 
+05/05/2025
+Trabalho de Estruturas de Dados
+Arquivo busca.c
+Possui o codigo principal do arquivo de busca,
+    com os algoritimos de busca,
+    referente as funções de busca de dispositivos
+*/
+
 void busca_sequencial_ip(Disp array[], int tamArray, char *strIp) {
     int i;
     int encontrado = 0;

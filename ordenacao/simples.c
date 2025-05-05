@@ -1,5 +1,14 @@
 #include "simples.h"
 
+/*
+Keven Eduardo Vaz Bilibio
+05/05/2025
+Trabalho de Estruturas de Dados
+Arquivo simples.c
+Possui o codigo principal do arquivo de ordenacao,
+    com os algoritimos de ordenacao simples
+*/
+
 void bolha(int array[], int tamArray) {
     int i, j;
 

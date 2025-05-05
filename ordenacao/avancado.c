@@ -1,3 +1,12 @@
+/*
+Keven Eduardo Vaz Bilibio 
+05/05/2025
+Trabalho de Estruturas de Dados
+Arquivo avancado.c
+Possui o codigo principal do arquivo de ordenacao,
+    com os algoritimos de ordenacao avançados/sofisticados
+*/
+
 #include "avancado.h"
 
 // Quick Sort

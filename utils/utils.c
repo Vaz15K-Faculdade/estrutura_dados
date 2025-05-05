@@ -1,5 +1,14 @@
 #include "utils.h"
 
+/*
+Keven Eduardo Vaz Bilibio
+05/05/2025
+Trabalho de Estruturas de Dados
+Arquivo utils.c
+Possui o codigo principal do arquivo de utilidades,
+    com as funções comuns que sao ultilizadas mais vezes no programa
+*/
+
 void limpar_buffer() {
     int c = 0;
     while ((c = getchar()) != '\n' && c != EOF);
