@@ -1,6 +1,7 @@
 #include "menu.h"
 #include "utils/utils.h"
 #include "utils/arquivo.h"
+#include <unistd.h>
 
 /*
 Keven Eduardo Vaz Bilibio 
