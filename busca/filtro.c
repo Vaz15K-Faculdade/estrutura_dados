@@ -13,8 +13,9 @@ Possui o codigo principal do arquivo de filtro,
 */
 
 void filtrar_disp(Disp array[], int tamArray, char *dispositivo) {
+    printf("--------------------------------------------\n");
     printf("ID | Nome | IP | Tipo | Consumo | Status\n");
-    printf("----------------------------------\n");
+    printf("--------------------------------------------\n");
     for (int i = 0; i < tamArray; i++) {
         if (strcmp(array[i].tipo, dispositivo) == 0) {
             printf("%d | %s | %s | %s | %.2f | %s\n", 
@@ -26,4 +27,5 @@ void filtrar_disp(Disp array[], int tamArray, char *dispositivo) {
                 array[i].status ? "Ativo" : "Desativado");
         }
     }
+    printf("--------------------------------------------\n");
 }
